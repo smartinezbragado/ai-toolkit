@@ -12,7 +12,7 @@ config:
       device: cuda:0
       # if a trigger word is specified, it will be added to captions of training data if it does not already exist
       # alternatively, in your captions you can add [trigger] and it will be replaced with the trigger word
-#      trigger_word: "p3r5on"
+      trigger_word: "p3r5on"
       network:
         type: "lora"
         linear: 16
@@ -65,8 +65,8 @@ config:
         # huggingface model name or path
         name_or_path: "black-forest-labs/FLUX.1-dev"
         is_flux: true
-        quantize: true  # run 8bit mixed precision
-#        low_vram: true  # uncomment this if the GPU is connected to your monitors. It will use less vram to quantize, but is slower.
+        quantize: true 
+        low_vram: true  
       sample:
         sampler: "flowmatch" # must match train.noise_scheduler
         sample_every: 250 # sample every this many steps
