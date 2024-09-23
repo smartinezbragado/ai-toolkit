@@ -19,7 +19,7 @@ config:
         linear_alpha: 16
       save:
         dtype: float16 # precision to save
-        save_every: 1000 # save every this many steps
+        save_every: 3000 # save every this many steps
         max_step_saves_to_keep: 4 # how many intermittent saves to keep
         push_to_hub: false #change this to True to push your trained model to Hugging Face.
         # You can either set up a HF_TOKEN env variable or you'll be prompted to log-in         
@@ -39,7 +39,7 @@ config:
           resolution: [ 512, 768, 1024 ]  # flux enjoys multiple resolutions
       train:
         batch_size: 1
-        steps: 1500  # total number of steps to train 500 - 4000 is a good range
+        steps: 2000  # total number of steps to train 500 - 4000 is a good range
         gradient_accumulation_steps: 1
         train_unet: true
         train_text_encoder: false  # probably won't work with flux
@@ -66,22 +66,21 @@ config:
         name_or_path: "black-forest-labs/FLUX.1-dev"
         is_flux: true
         quantize: true 
-        # low_vram: true  
+        low_vram: true  
       sample:
         sampler: "flowmatch" # must match train.noise_scheduler
-        sample_every: 1000 # sample every this many steps
+        sample_every: 1500 # sample every this many steps
         width: 1024
         height: 1024
         prompts:
           # you can add [trigger] to the prompts here and it will be replaced with the trigger word
 #          - "[trigger] holding a sign that says 'I LOVE PROMPTS!'"\
-          - "p3r5on with red hair, playing chess at the park, bomb going off in the background"
           - "a p3r5on holding a coffee cup, in a beanie, sitting at a cafe"
           - "a p3r5on is a DJ at a night club, fish eye lens, smoke machine, lazer lights, holding a martini"
           - "a p3r5on showing off his cool new t shirt at the beach, a shark is jumping out of the water in the background"
           - "a p3r5on building a log cabin in the snow covered mountains"
         neg: ""  # not used on flux
-        seed: 42
+        seed: 1234
         walk_seed: true
         guidance_scale: 4
         sample_steps: 40
